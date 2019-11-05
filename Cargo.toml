@@ -1,0 +1,9 @@
+[package]
+
+name = "learn-you-zsh-alias"
+version = "0.0.1"
+authors = [ "Suyash Shekhar <suyashshekhar@gmail.com>" ]
+
+[dependencies]
+
+shells="0.2.0"
