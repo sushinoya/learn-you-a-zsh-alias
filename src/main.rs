@@ -1,6 +1,8 @@
 extern crate shells;
 
 use shells::zsh;
+use std::collections::HashMap;
+use std::env::args;
 
 struct AliasMapping {
     alias: String,
@@ -25,8 +27,15 @@ fn get_aliases() -> Vec<AliasMapping> {
 }
 
 fn main() {
+    let args: Vec<String> = args().collect();
     let aliases = get_aliases();
-    for alias in aliases {
-        println!("{}: {}", alias.alias, alias.full)
+    let mut cmd_to_alias = HashMap::new();
+
+    for mapping in aliases {
+        cmd_to_alias.insert(mapping.full, mapping.alias);
+    }
+
+    if cmd_to_alias.contains_key(&args[1]) {
+        println!("Next time, try {}", cmd_to_alias.get(&args[1]).unwrap().to_string())
     }
 }
